@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISTE Student Chapter — VIT</title>
-<link rel="icon" type="image/png" href="https://i.postimg.cc/BQppCddz/ISTE-LOGO.png">
-<meta name="description" content="ISTE Student Chapter at Vidyalankar Institute of Technology — a student community for technology, innovation and leadership.">
+<title>ISTE Student Chapter | Vidyalankar Institute of Technology, Mumbai</title>
+<link rel="icon" type="image/webp" href="iste-logo.webp">
+<meta name="description" content="Explore the ISTE Student Chapter at Vidyalankar Institute of Technology, Mumbai — student-led events, technical learning, projects and a community for innovation.">
+<meta name="theme-color" content="#f7f8f5">
+<meta property="og:title" content="ISTE Student Chapter | VIT Mumbai">
+<meta property="og:description" content="A student community for technical learning, innovation and leadership at Vidyalankar Institute of Technology.">
+<meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1290,6 +1294,78 @@ footer {
     animation: none !important;
   }
 }
+
+
+/* ========================================================================
+   CINEMATIC SCROLL CHOREOGRAPHY — inspired by the reference site's motion
+   Keeps the existing ISTE palette, layout, content and components intact.
+   ======================================================================== */
+html.lenis, html.lenis body { height: auto; }
+html.lenis.lenis-smooth { scroll-behavior: auto !important; }
+html.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* Word masks are added only by the animation script; static layout stays unchanged. */
+.iste-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.04em 0 0.08em;
+  margin: -0.04em 0 -0.08em;
+  perspective: 700px;
+}
+.iste-word { display: inline-block; transform-origin: 50% 100%; will-change: transform, opacity, filter; }
+
+/* Animation surfaces remain visually identical until a scroll timeline activates. */
+.learn-card, .event-date-card, .committee-card, .stat-new,
+.faq-list details, .contact-copy, .contact-form { transform-style: preserve-3d; }
+.learn-card, .event-date-card, .committee-card { backface-visibility: hidden; }
+
+/* Gentle depth cue on existing images; no new decoration or theme colors. */
+.conveyor-avatar img { will-change: transform; transform: translateZ(0) scale(1.001); }
+
+@media (max-width: 767px) {
+  .iste-word-mask { padding-top: 0.02em; padding-bottom: 0.04em; margin-top: -0.02em; margin-bottom: -0.04em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.lenis, html.lenis body { height: auto !important; }
+  .iste-word-mask { overflow: visible; }
+  .iste-word, .learn-card, .event-date-card, .committee-card, .stat-new,
+  .faq-list details, .contact-copy, .contact-form, .conveyor-avatar img {
+    transform: none !important; filter: none !important; opacity: 1 !important;
+  }
+}
+
+
+
+/* QUALITY + MOBILE HARDENING */
+html, body { max-width: 100%; overflow-x: clip; }
+body { min-width: 320px; }
+main, section, footer, .container, .nav, .contact-box, .footer-top { min-width: 0; }
+img, video, svg, canvas { max-width: 100%; }
+img { height: auto; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #7774c9; outline-offset: 3px; }
+.form-status { min-height: 1.4em; margin-top: 12px; font-size: 13px; font-weight: 700; color: #fff; }
+.form-status.error { color: #ffd0d0; }
+.form-status.success { color: #c7f7d8; }
+.mobile-toggle { flex: 0 0 42px; }
+.mobile-drawer { overflow-y: auto; overscroll-behavior: contain; }
+@media (max-width: 767px) {
+  .container { width: min(100% - 28px, 1240px); }
+  .nav { max-width: calc(100vw - 18px); }
+  .brand { min-width: 0; }
+  .brand-copy { min-width: 0; }
+  .brand-copy strong { overflow-wrap: anywhere; }
+  .hero-iste, .about-section, .events-new, .committee-section, .contact-section { max-width: 100%; }
+  .contact-box { padding: 26px 18px; }
+  .contact-form, .contact-form label, .contact-form input, .contact-form textarea { width: 100%; min-width: 0; }
+  .footer-nav-groups { flex-wrap: wrap; gap: 28px !important; }
+  .footer-col { min-width: 0; }
+  .footer-links { flex-wrap: wrap; }
+  .footer-links a { overflow-wrap: anywhere; }
+  .mobile-drawer { padding-left: 24px; padding-right: 24px; }
+}
+
 </style>
 </head>
 
@@ -1302,7 +1378,7 @@ footer {
 <nav class="nav" id="mainNav">
   <a class="brand" href="#home">
     <div class="logo logo-image">
-      <img src="iste_logo.jpg" onerror="this.onerror=null;this.src='https://i.postimg.cc/BQppCddz/ISTE-LOGO.png';" alt="ISTE logo" width="43" height="43">
+      <img src="iste-logo.webp" alt="ISTE logo — go to homepage" width="43" height="43" decoding="async">
     </div>
     <div class="brand-copy">
       <strong>ISTE Student Chapter</strong>
@@ -1320,12 +1396,12 @@ footer {
   <div class="nav-right">
     <div class="nav-status"><i></i> 2026–27 Chapter</div>
     <a class="nav-cta" href="#contact">Join the Chapter ↗</a>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+    <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open navigation menu" aria-controls="mobileDrawer" aria-expanded="false">☰</button>
   </div>
 </nav>
 
 <!-- Mobile Navigation Drawer -->
-<div class="mobile-drawer" id="mobileDrawer">
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
   <a href="#about" class="drawer-link">About Chapter</a>
   <a href="#events" class="drawer-link">Events Calendar</a>
   <a href="#team" class="drawer-link">Committee Hierarchy</a>
@@ -1519,9 +1595,9 @@ footer {
       <div class="committee-hierarchy">
         <!-- Row 1: Convenor -->
         <div class="committee-level committee-top" data-row="1">
-          <a class="committee-card committee-convenor" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <a class="committee-card committee-convenor" >
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/qqQnf53k/convenor.jpg" alt="Prof. Vijay Purohit" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/qqQnf53k/convenor.jpg" alt="Prof. Vijay Purohit" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Prof. Vijay Purohit</strong>
             <span>Convenor</span>
@@ -1532,7 +1608,7 @@ footer {
         <div class="committee-level committee-two" data-row="2">
           <a class="committee-card" href="https://www.linkedin.com/in/rishabh-hatlunkar-3947722b4/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/nLKsmWhp/rishabh.jpg" alt="Rishabh Hatlunkar" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/nLKsmWhp/rishabh.jpg" alt="Rishabh Hatlunkar" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Rishabh Hatlunkar</strong>
             <span>Chairperson</span>
@@ -1540,7 +1616,7 @@ footer {
 
           <a class="committee-card" href="https://www.linkedin.com/in/devangini-jadhav-8aa964330/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/XNpxgHVf/Screenshot-2026-10-08-213353.png" alt="Devangini Jadhav" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/XNpxgHVf/Screenshot-2026-10-08-213353.png" alt="Devangini Jadhav" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Devangini Jadhav</strong>
             <span>Vice Chairperson</span>
@@ -1551,7 +1627,7 @@ footer {
         <div class="committee-level committee-four" data-row="3">
           <a class="committee-card" href="https://www.linkedin.com/in/rachit-shrirame-4a3293397/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/zB7YTChy/rachit.png" alt="Rachit Shrirame" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/zB7YTChy/rachit.png" alt="Rachit Shrirame" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Rachit Shrirame</strong>
             <span>Technical Head</span>
@@ -1559,7 +1635,7 @@ footer {
 
           <a class="committee-card" href="https://www.linkedin.com/in/rakeshchaudhary6786/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/SNw77wk6/rakesh.jpg" alt="Rakesh Chaudhary" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/SNw77wk6/rakesh.jpg" alt="Rakesh Chaudhary" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Rakesh Chaudhary</strong>
             <span>Documentation Head</span>
@@ -1567,7 +1643,7 @@ footer {
 
           <a class="committee-card" href="https://www.linkedin.com/in/tanisha-worlikar-b34084335/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/9QrtGC64/tanisha.jpg" alt="Tanisha Worlikar" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/9QrtGC64/tanisha.jpg" alt="Tanisha Worlikar" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Tanisha Worlikar</strong>
             <span>Media &amp; Creative Head</span>
@@ -1575,7 +1651,7 @@ footer {
 
           <a class="committee-card" href="https://www.linkedin.com/in/anay-gore-85aa99323/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/sgv9psks/anay.jpg" alt="Anay Gore" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/sgv9psks/anay.jpg" alt="Anay Gore" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Anay Gore</strong>
             <span>Media &amp; Creative Co-Head</span>
@@ -1586,13 +1662,13 @@ footer {
         <div class="committee-level committee-four committee-bottom" data-row="4">
           <a class="committee-card" href="https://www.linkedin.com/in/ashwika-singh-bhadauria-63a07b41b/" target="_blank" rel="noopener noreferrer">
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/Nj571B3j/Ashwika.jpg" alt="Ashwika Bhadauria" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/Nj571B3j/Ashwika.jpg" alt="Ashwika Bhadauria" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Ashwika Bhadauria</strong>
             <span>Events Head</span>
           </a>
 
-          <a class="committee-card" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <a class="committee-card" >
             <div class="conveyor-avatar">
               <span class="avatar-placeholder-txt">...</span>
             </div>
@@ -1600,17 +1676,17 @@ footer {
             <span>Events Co-Head</span>
           </a>
 
-          <a class="committee-card" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <a class="committee-card" >
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/t4YthpKV/sahil.jpg" alt="Sahil Auti" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/t4YthpKV/sahil.jpg" alt="Sahil Auti" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Sahil Auti</strong>
             <span>Publicity Head</span>
           </a>
 
-          <a class="committee-card" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <a class="committee-card" >
             <div class="conveyor-avatar">
-              <img src="https://i.postimg.cc/L8nBz2c4/gayatri.jpg" alt="Gayatri Sawant" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+              <img src="https://i.postimg.cc/L8nBz2c4/gayatri.jpg" alt="Gayatri Sawant" loading="lazy" decoding="async" referrerpolicy="no-referrer" loading="lazy" decoding="async">
             </div>
             <strong>Gayatri Sawant</strong>
             <span>Publicity Co-Head</span>
@@ -1672,15 +1748,16 @@ footer {
 
         <form class="contact-form" id="contactForm">
           <label>Name
-            <input type="text" name="name" placeholder="Your name" required>
+            <input type="text" name="name" autocomplete="name" required>
           </label>
           <label>Email
-            <input type="email" name="email" placeholder="you@example.com" required>
+            <input type="email" name="email" autocomplete="email" required>
           </label>
           <label>Message
-            <textarea name="message" rows="5" placeholder="Write your message..." required></textarea>
+            <textarea name="message" rows="5" required></textarea>
           </label>
           <button class="submit-btn" type="submit">Submit <span>↗</span></button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite" tabindex="-1"></p>
         </form>
       </div>
     </div>
@@ -1695,7 +1772,7 @@ footer {
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo-line">
-          <img src="iste_logo.jpg" onerror="this.onerror=null;this.src='https://i.postimg.cc/BQppCddz/ISTE-LOGO.png';" alt="ISTE Logo" width="32" height="32">
+          <img src="iste-logo.webp" alt="ISTE Logo" width="32" height="32" loading="lazy" decoding="async">
           <span>ISTE Student Chapter</span>
         </div>
         <strong class="footer-title">ISTE Student Chapter</strong>
@@ -1719,14 +1796,14 @@ footer {
             <a href="https://www.linkedin.com/company/iste-vit/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             <a href="https://www.instagram.com/iste.vit/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
             <a href="https://github.com/istevit" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iste%40vit.edu.in" target="_blank" rel="noopener noreferrer">Email ↗</a>
+            <a href="mailto:iste@vit.edu.in">Email ↗</a>
           </div>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 ISTE Student Chapter · VIT</span>
+      <span>© <span id="copyrightYear">2026</span> ISTE Student Chapter · VIT</span>
       <span>Built by the student community.</span>
     </div>
   </div>
@@ -1993,18 +2070,22 @@ footer {
   const drawerLinks = document.querySelectorAll('.drawer-link');
 
   if (mobileToggle && mobileDrawer) {
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = mobileDrawer.classList.toggle('open');
+    function setMenuOpen(isOpen) {
+      mobileDrawer.classList.toggle('open', isOpen);
+      mobileDrawer.setAttribute('aria-hidden', String(!isOpen));
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
       mobileToggle.textContent = isOpen ? '✕' : '☰';
       document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    drawerLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileDrawer.classList.remove('open');
-        mobileToggle.textContent = '☰';
-        document.body.style.overflow = '';
-      });
+      if (isOpen) mobileDrawer.querySelector('a')?.focus();
+    }
+    mobileToggle.addEventListener('click', () => setMenuOpen(!mobileDrawer.classList.contains('open')));
+    drawerLinks.forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        setMenuOpen(false);
+        mobileToggle.focus();
+      }
     });
   }
 
@@ -2036,19 +2117,217 @@ footer {
 
   // 6. CONTACT FORM SUBMISSION HANDLER
   const form = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
   if (form) {
+    form.addEventListener('invalid', () => {
+      if (formStatus) {
+        formStatus.textContent = 'Please complete all fields with a valid email address.';
+        formStatus.className = 'form-status error';
+      }
+    }, true);
     form.addEventListener('submit', e => {
       e.preventDefault();
       const name = form.elements.name.value.trim();
       const email = form.elements.email.value.trim();
       const message = form.elements.message.value.trim();
+      if (!name || !email || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (formStatus) {
+          formStatus.textContent = 'Error: enter your name, a valid email address and a message.';
+          formStatus.className = 'form-status error';
+          formStatus.focus();
+        }
+        return;
+      }
       const subject = encodeURIComponent('ISTE Website Enquiry from ' + name);
       const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+      if (formStatus) {
+        formStatus.textContent = 'Your email app should open with this message. The enquiry is not sent until you press Send in that app.';
+        formStatus.className = 'form-status success';
+      }
       window.location.href = 'mailto:iste@vit.edu.in?subject=' + subject + '&body=' + body;
     });
   }
 
+  // Keep the copyright year current without a manual annual edit.
+  const yearNode = document.getElementById('copyrightYear');
+  if (yearNode) yearNode.textContent = new Date().getFullYear();
+
 })();
 </script>
+
+
+<!-- Motion engine: Lenis for smooth wheel/touch flow, GSAP + ScrollTrigger for scroll-linked choreography. -->
+<script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (reduceMotion) return;
+
+  function bootMotion() {
+    if (!window.gsap || !window.ScrollTrigger) {
+      // The original site's IntersectionObserver reveals remain as a reliable fallback.
+      document.documentElement.classList.add('iste-motion-fallback');
+      return;
+    }
+    const gsap = window.gsap;
+    gsap.registerPlugin(window.ScrollTrigger);
+    const mm = gsap.matchMedia();
+
+    // Lenis makes wheel movement feel continuous. Native touch scrolling is preserved.
+    let lenis = null;
+    if (window.Lenis) {
+      lenis = new window.Lenis({
+        duration: 1.08,
+        smoothWheel: true,
+        syncTouch: false,
+        wheelMultiplier: 0.92,
+        touchMultiplier: 1.05,
+        anchors: true
+      });
+      lenis.on('scroll', window.ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+      window.addEventListener('beforeunload', () => lenis.destroy(), { once: true });
+    }
+
+    // Split simple section headings into masked words for a rolling 3D reveal.
+    const headingSelector = '.about-iste .section-title, .learn-section .center-heading h2, .events-new .section-title, .committee-section .center-heading h2, .faq-intro .section-title, .contact-copy h2';
+    document.querySelectorAll(headingSelector).forEach((heading) => {
+      if (heading.children.length || heading.dataset.motionSplit === 'done') return;
+      const label = heading.textContent.trim();
+      if (!label) return;
+      heading.setAttribute('aria-label', label);
+      const frag = document.createDocumentFragment();
+      label.split(/\s+/).forEach((word, index, words) => {
+        const mask = document.createElement('span');
+        mask.className = 'iste-word-mask';
+        mask.setAttribute('aria-hidden', 'true');
+        const inner = document.createElement('span');
+        inner.className = 'iste-word';
+        inner.textContent = word;
+        mask.appendChild(inner);
+        frag.appendChild(mask);
+        if (index < words.length - 1) frag.appendChild(document.createTextNode(' '));
+      });
+      heading.replaceChildren(frag);
+      heading.dataset.motionSplit = 'done';
+    });
+
+    // Responsive choreography: keep the motion bold on desktop, lighter on phones.
+    mm.add('(min-width: 768px)', () => {
+      // Headings roll in word-by-word with perspective and a brief focus pull.
+      document.querySelectorAll(headingSelector).forEach((heading) => {
+        const words = heading.querySelectorAll('.iste-word');
+        if (!words.length) return;
+        gsap.fromTo(words,
+          { yPercent: 125, rotateX: -72, opacity: 0, filter: 'blur(9px)' },
+          { yPercent: 0, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: 1.05,
+            ease: 'power4.out', stagger: { each: 0.055, from: 'start' },
+            scrollTrigger: { trigger: heading, start: 'top 86%', once: true } }
+        );
+      });
+
+      // Stats rise like physical panels, then settle into the existing grid.
+      const stats = gsap.utils.toArray('.stats-compact .stat-new');
+      if (stats.length) gsap.fromTo(stats,
+        { y: 85, z: -100, rotateX: 24, rotateZ: (i) => i % 2 ? 3 : -3, scale: 0.82, opacity: 0, filter: 'blur(7px)' },
+        { y: 0, z: 0, rotateX: 0, rotateZ: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.05,
+          ease: 'power3.out', stagger: 0.12,
+          scrollTrigger: { trigger: '.stats-compact', start: 'top 82%', once: true } }
+      );
+
+      // Learning cards enter with alternating 3D rotations and a crisp settle.
+      const learnCards = gsap.utils.toArray('.learn-grid .learn-card');
+      if (learnCards.length) gsap.fromTo(learnCards,
+        { y: 115, z: -140, rotateX: 22, rotateY: (i) => i % 2 ? 18 : -18, scale: 0.78, opacity: 0, filter: 'blur(12px)' },
+        { y: 0, z: 0, rotateX: 0, rotateY: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.1,
+          ease: 'power4.out', stagger: 0.14,
+          scrollTrigger: { trigger: '.learn-grid', start: 'top 82%', once: true } }
+      );
+
+      // Event panels reveal from opposite sides using a clipping wipe.
+      const eventCards = gsap.utils.toArray('.event-cards-only .event-date-card');
+      if (eventCards.length) gsap.fromTo(eventCards,
+        { x: (i) => i % 2 ? 100 : -100, y: 55, rotateZ: (i) => i % 2 ? 4 : -4, clipPath: 'inset(0 0 100% 0 round 24px)', opacity: 0 },
+        { x: 0, y: 0, rotateZ: 0, clipPath: 'inset(0 0 0% 0 round 24px)', opacity: 1, duration: 1.05,
+          ease: 'power3.out', stagger: 0.16,
+          scrollTrigger: { trigger: '.event-cards-only', start: 'top 84%', once: true } }
+      );
+
+      // Committee rows cascade; each profile card rotates into the viewing plane.
+      document.querySelectorAll('.committee-level').forEach((row) => {
+        const cards = row.querySelectorAll('.committee-card');
+        if (!cards.length) return;
+        gsap.fromTo(cards,
+          { y: 100, z: -100, rotateX: 12, rotateY: (i) => i % 2 ? 26 : -26, scale: 0.78, opacity: 0, filter: 'blur(10px)' },
+          { y: 0, z: 0, rotateX: 0, rotateY: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.05,
+            ease: 'power4.out', stagger: { each: 0.1, from: 'center' },
+            scrollTrigger: { trigger: row, start: 'top 88%', once: true } }
+        );
+      });
+
+      // FAQ rows arrive with a clean horizontal sweep.
+      const faqRows = gsap.utils.toArray('.faq-list details');
+      if (faqRows.length) gsap.fromTo(faqRows,
+        { x: 55, opacity: 0, filter: 'blur(5px)' },
+        { x: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out', stagger: 0.1,
+          scrollTrigger: { trigger: '.faq-list', start: 'top 82%', once: true } }
+      );
+
+      // Contact copy and form split apart then lock together as the section arrives.
+      const contactCopy = document.querySelector('.contact-copy');
+      const contactForm = document.querySelector('.contact-form');
+      if (contactCopy && contactForm) {
+        gsap.fromTo(contactCopy, { x: -70, y: 22, opacity: 0, filter: 'blur(7px)' },
+          { x: 0, y: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power3.out',
+            scrollTrigger: { trigger: '.contact-box', start: 'top 82%', once: true } });
+        gsap.fromTo(contactForm, { x: 70, y: 30, opacity: 0, filter: 'blur(7px)' },
+          { x: 0, y: 0, opacity: 1, filter: 'blur(0px)', duration: 1, delay: 0.12, ease: 'power3.out',
+            scrollTrigger: { trigger: '.contact-box', start: 'top 82%', once: true } });
+      }
+
+      // Deep, slow image parallax inside existing committee portraits.
+      gsap.utils.toArray('.conveyor-avatar img').forEach((img) => {
+        gsap.fromTo(img, { yPercent: -7, scale: 1.12 },
+          { yPercent: 7, scale: 1.18, ease: 'none',
+            scrollTrigger: { trigger: img.closest('.committee-card') || img, start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
+      });
+
+      // A restrained camera push on the existing event section creates depth without recoloring it.
+      const eventHead = document.querySelector('.events-new .section-head');
+      if (eventHead) gsap.fromTo(eventHead, { y: 35, scale: 0.96 },
+        { y: -12, scale: 1, ease: 'none', scrollTrigger: { trigger: '.events-new', start: 'top bottom', end: 'center center', scrub: 0.7 } });
+    });
+
+    mm.add('(max-width: 767px)', () => {
+      // Mobile uses the same motion language with less rotation and blur for smoother rendering.
+      document.querySelectorAll(headingSelector).forEach((heading) => {
+        const words = heading.querySelectorAll('.iste-word');
+        if (!words.length) return;
+        gsap.fromTo(words, { yPercent: 95, opacity: 0, filter: 'blur(4px)' },
+          { yPercent: 0, opacity: 1, filter: 'blur(0px)', duration: 0.7, ease: 'power3.out', stagger: 0.025,
+            scrollTrigger: { trigger: heading, start: 'top 90%', once: true } });
+      });
+      gsap.utils.toArray('.learn-grid .learn-card, .event-cards-only .event-date-card, .committee-card, .faq-list details').forEach((el, i) => {
+        gsap.fromTo(el, { y: 45, scale: 0.94, opacity: 0 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.65, delay: (i % 4) * 0.035, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+      });
+    });
+
+    // Recalculate after fonts and images settle so pinned/scrubbed geometry stays accurate.
+    window.addEventListener('load', () => window.ScrollTrigger.refresh(), { once: true });
+    setTimeout(() => window.ScrollTrigger.refresh(), 500);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootMotion, { once: true });
+  else bootMotion();
+})();
+</script>
+
 </body>
 </html>
